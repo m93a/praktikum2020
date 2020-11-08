@@ -1,11 +1,11 @@
 latex:
-	xelatex -shell-escape protokol.tex
+	pdflatex -shell-escape protokol.tex
 	bibtex protokol
-	xelatex protokol.tex
-	xelatex protokol.tex
+	pdflatex protokol.tex
+	pdflatex protokol.tex
 
 quick:
-	xelatex -shell-escape protokol.tex
+	pdflatex -shell-escape protokol.tex
 
 clean:
 	rm -rf *.aux

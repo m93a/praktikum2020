@@ -3,19 +3,27 @@
 % Základní balíčky
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{nonfloat}
-\usepackage{cm-super}
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{gensymb}
 \usepackage[top = 1cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
 
-% Bibtex
-\usepackage{etoolbox}
-\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+% Language-related
+\usepackage[czech]{babel}
+\usepackage{csquotes}
+\usepackage{polyglossia}
+\setmainlanguage{czech}
+\setotherlanguage{greek}
+
+% Bibtex je oficiálně mrtka
+% \usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+% \usepackage{etoolbox}
+% \patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+% \bibliography{protokol}
 
 % Pro titulní stránku
 \usepackage{titlesec}
@@ -28,6 +36,10 @@
 \usepackage{epstopdf}
 \usepackage{csvsimple}
 \usepackage{units}
+
+\usepackage{soul}
+
+
 
 
 \renewcommand{\U}[1]{\ensuremath{\,\mathrm{#1}}}
@@ -46,154 +58,259 @@
 \begin{document}
 
 \include{titulka}
+\setmainfont{Linux Libertine O}
+
+
+
 
 \section{Pracovní úkoly}
 \begin{enumerate}
     \item Proveďte energetickou kalibraci α-spektrometru a určete jeho rozlišení.
     \item Určete absolutní aktivitu kalibračního radioizotopu $^{241}$Am.
-    \item Změřte závislost ionizačních ztrát α-částic na tlaku vzduchu $ΔT = ΔT(P)$.
+    \item Změřte závislost ionizačních ztrát α-částic na tlaku vzduchu $\Delta T = \Delta T(p)$.
     \item Určete specifické ionizační ztráty α-částic ve vzduchu při normálním tlaku $-dT/dx = f(T)$. Srovnejte tuto závislost se závislostí získanou pomocí empirické formule pro dolet α-částic ve vzduchu za normálních podmínek.
-    \item Určete energie α-částic vyletujících ze vzorku obsahujícím izotop $^{239}$Pu a příměs izotopu $^{238}$Pu a porovnejte je s tabelovanými hodnotami. Stanovte relativní zastoupení izotopu $^{238}$Pu ve vzorku s přesností lepší než 10 \%, jsou-li $T_{1/2}({}^{238}Pu) = 87.71 \U{yr}$ a $T_{1/2}({}^{239}Pu) = 24.13 \cdot 10^3 \U{yr}$.
+    \item Určete energie α-částic vyletujících ze vzorku obsahujícím izotop $^{239}$Pu a příměs izotopu $^{238}$Pu a porovnejte je s tabelovanými hodnotami. Stanovte relativní zastoupení izotopu $^{238}$Pu ve vzorku s přesností lepší než 10 \%, jsou-li $t_½({}^{238}\text{Pu}) = 87.71 \U{yr}$ a $t_½({}^{239}\text{Pu}) = 24.13 \cdot 10^3 \U{yr}$.
 \end{enumerate}
 
-\pagebreak
-
 \section{Teoretická část}
-V práci budeme měřit α-záření
+V práci budeme měřit α-záření pomocí křemíkového α-spektrometru. Spektrometr měří počet signálů spadajících do každého \textit{kanálu} $n(\mathrm{ch.})$, číslo kanálu je přímo úměrné kinetické energii $T$ příchozí částice. Počet detekovaných částic je zatížený chybou, která se rovná $\sigma(n) = \sqrt{n}$ (protože se jedná o Poissonovo rozložení). Detektor kalibrujeme tak, že naměříme spektrum známého prvku a kanálu, ve kterém se nachází těžiště naměřeného píku, přiřadíme předpokládanou energii. Pro energetické rozlišení kalibrovaného přístroje platí vztah [1]
+\begin{equation}
+    \sigma(T) = \frac{\Gamma}{2 \sqrt{N \, 2 \ln 2}} \: ,
+    \label{eq-energie-neurcitost}
+\end{equation}
+kde $\Gamma$ je \textit{pološířka} píku (tj. plná šířka v polovině maxima, FWHM) a $N$ je celkový počet detekovaných impulzů – tedy součet $n$ jednotlivých kanálů.
 
-\pagebreak
+\bigskip
+
+Částice ze vzorku vylétávají izotropně do všech stran, my je ovšem zachytáváme pouze na detektoru o relativně malém povrchu. Celkovou aktivitu vzorku můžeme ovšem dopočítat pomocí vzorce [1]
+\begin{align}
+    A &= \frac{4\pi \, \ell^2 \, N}{S \, t} \: ,
+    &
+    \eta(A) &= \sqrt{ \eta(N)^2 + 4\eta(\ell)^2 }
+    = \sqrt{ N^{-1} + 4\eta(\ell)^2 } \: ,
+    \label{eq-aktivita}
+\end{align}
+kde $\ell$ je vzdálenost mezi vzorkem a detektorem, $S$ je plocha detektoru, $N$ je celkový počet naměřených impulzů, $t$ je celkový čas měření a $\eta(X) = \sigma(X) / X$ je relativní chyba veličiny $X$.
+
+\bigskip
+
+Pro záření o energii mezi 4 a 7 MeV platí pro ztrátu kinetické energie ve vzduchu za normálních podmínek empirická formule [1]:
+\begin{equation}
+    -\frac{\text d T}{\text d x} = \frac{2}{3} \, \frac{1}{\xi \sqrt T} \: ,
+    \label{eq-empiricka}
+\end{equation}
+kde $x$ je vzdálenost od zdroje a $\xi = 0.31 \U{cm \cdot MeV^{-3/2}}$. V našem experimentu nebudeme měnit vzdálenost detektoru, ale tlak – bude se tedy měnit \textit{efektivní tloušťka vzduchového sloupce} $x_{\text{eff.}} = \ell \, p / p_{\text{atm.}} \:$. Naším cílem bude ověřit platnost formule \eqref{eq-empiricka} pomocí numerické derivace:
+\begin{align}
+    T'(x_{\text{eff.}})
+    = „\frac{\Delta T\;}{\Delta x_{\text{eff.}}\!\!}“
+    = \frac{T_{j+1} - T_j}{x_{j+1} - x_j}
+    \label{eq-deriv}
+\end{align}
+
+\bigskip
+
+V úloze budeme také chtít určit poměr zastoupení dvou izotopů plutonia ve vzorku ze znalosti jejich poločasů rozpadu a počtu naměřených impulzů. K tomu nám poslouží rozpadový zákon:
+\begin{align*}
+    \frac{\text{d}N}{\text{d}\,t} = \frac{\ln 2}{t_½} \, M \: ,
+\end{align*}
+kde $N$ je počet rozpadů, $t_½$ je poločas rozpadu a $M$ je počet zbývajících atomů daného izotopu. Protože pracujeme na časových škálách o mnoho řádů menších, než jsou poločasy rozpadu jednotlivých izotopů, můžeme $M$ považovat za konstantní a symbolicky rovnici „zintegrovat“:
+\begin{align*}
+    N = \frac{\ln 2}{t_½} \, M \, t \: ,
+\end{align*}
+kde $N$ je počet rozpadů naměřený za dobu $t$. Skládá-li se vzorek ze dvou izotopů A a B, relativní zastoupení izotopu A získáme snadno jako:
+\begin{align}
+    R(\text A)
+    &= \frac{M(\text A)}{M(\text A) + M(\text B)}
+    = \frac{N(\text A)}{\, N(\text A) +  \dfrac{t_½(\text B)}{t_½(\text A)} \, N(\text B) \,}
+    \: ,
+    &
+    \eta(R\small(A\small))
+    = \frac{t_½(\text B)}{t_½(\text A)}
+    \sqrt{\frac{N(\text B)}{N(\text A)^2} + \frac{N(\text B)^2}{N(\text A)^3}}
+    \: .
+    \label{eq-relativni-zastoupeni}
+\end{align}
+Relativní chybu $R$ lze určit přímo z pravidla o „šíření variance“, tedy:
+\begin{equation*}
+    \sigma(X)^2 = \sum_j \left(\frac{\partial X}{\partial y_j} \right)^2 \sigma(y_j)^2 \: ,
+\end{equation*}
+a následnou úpravou.
+
 \section{Výsledky měření}
-\phantom{.}\vspace{-\baselineskip}
-\begin{wrapfigure}{r}{8cm}
+
+\subsection{Kalibrace, rozlišení a aktivita vzorku}
+Uvedená plocha detektoru je ${900 \U{mm^2}}$, vzorek $^{241}$Am jsme umístili do vzdálenosti ${\ell = 36.4 \pm 0.5 \U{mm}}$ od něj. Poté jsme měřili po dobu $t=116.2 \U{s}$. Naměřili celkem $N = 4.017 \cdot 10^4$ impulzů a těžiště naměřeného píku identifikovali s očekávanou energií $T = 5.4857 \U{MeV}$, šířka píku byla $\Gamma = 145.9 \U{keV}$. Podle \eqref{eq-energie-neurcitost} vypočítáme rozlišení kalibrovaného přístroje:
+\begin{equation*}
+    \sigma(T) = \frac{\Gamma}{2 \sqrt{N \, 2 \ln 2}}
+    = 0.31 \U{keV}
+\end{equation*}
+
+Dále z týchž dat podle \eqref{eq-aktivita} vypočteme celkovou aktivitu vzorku:
+\begin{gather*}
+    A = \frac{4\pi \, \ell^2 \, N}{S \, t} \\
+    \eta(A) = \sqrt{N^{-1} + 4 \eta(\ell)^2}
+\end{gather*}
+\begin{equation*}
+    A = (6400 \pm 1500) \U{s^{-1}}
+\end{equation*}
+
+\subsection{Měření s proměnným tlakem}
+Dále jsme detektor i vzorek schovali pod hrnec a vývěvou odčerpali všechen vzduch. Poté jsme postupně zvyšovali tlak a proměřovali spektrum.
+
+\phantom{.}
+\begin{minipage}{\linewidth}
     \centering
-    \vspace{-\baselineskip}
-    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 8cm, 5cm}]
-        plot x
-    \end{gnuplot}
-    \vspace{-2\baselineskip}
-    \caption{Způsob odečtu mezních úhlů, zde konkrétně u $^{29}$Cu při $20\U{kV}$.}
-
+    \begin{tabular}{ rl|rl }
+        \multicolumn{2}{c}{$p [\U{10^{-3} atm.}]$} &
+        \multicolumn{2}{c}{$T [\U{MeV}]$}
+        \csvreader[
+            head to column names,
+            separator=comma
+        ]{data.csv}{}
+        {
+           \csviffirstrow{\\\hline}{\\}
+           \tlak &$\pm$ 10 & \energy & $\pm$ \sigmaenergy
+        }
+    \end{tabular}
     \vspace{\baselineskip}
+    \tabcaption{Naměřená závislost $T(p)$}
+    \label{energie-tlak}
+    \vspace{\baselineskip}
+\end{minipage}
 
-    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 8cm, 6.5cm}]
-        plot x
-    \end{gnuplot}
-    \vspace{-2\baselineskip}
-    \caption{Naměřené hodnoty Planckovy konstanty}
-    \label{graf-planck}
-
-    \vspace{2\baselineskip}
-
-    \includegraphics[width=7cm]{fish.jpeg}
-    \vspace{-0.5\baselineskip}
-    \caption{Pán lesa. Nepřeje si být rušen.}
-
-    \vspace{2\baselineskip}
-
-    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 8cm, 5cm}]
-        plot x
-    \end{gnuplot}
-    \vspace{-2\baselineskip}
-    \caption{Lineární závislost z \eqref{linearni-k-alpha} a \eqref{linearni-k-beta}}
-    \vspace{-13cm}
-    \label{graf-linearni}
-\end{wrapfigure}
-Nejprve jsme měřili brzdné záření na rentgence s měděnou anodou. Extrapolací z grafů jsme určili mezní úhly:
+\phantom{.}
 \begin{minipage}{\linewidth}
     \vspace{\baselineskip}
     \centering
-    \begin{tabular}{ r|rl }
-        \bfseries $U [\U{kV}]$ &
-        \multicolumn{2}{c}{$\vartheta [\°]$}
-        %\csvreader[ head to column names ]{data_brzdne.csv}{}
-        %{
-        %    \csviffirstrow{\\\hline}{\\}
-        %    \valU & \valtheta & $\pm$ \valthetaerr
-        %}
-    \end{tabular}
+    \def\gptboxheight{15cm}
+    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 15cm, 8cm}]
+        set datafile separator ','
+
+        set xlabel '$p [10^{-3} \U{atm.}]$'
+        set ylabel '$T [MeV]$'
+
+        set xrange [0:1000]
+        set yrange [0:7]
+
+        a = b = c = 1
+        f(x) = a*x**2 + b*x + c
+        fit f(x) 'data.csv' skip 1 using 1:4:5 yerrors via a,b,c
+
+        plot 'data.csv' skip 1 using 1:4:5 w yerror t 'naměřená data', f(x) t 'fit polynomem 2. stupně'
+    \end{gnuplot}
+    \figcaption{Graf naměřené závislosti energie na tlaku v hrnci.}
+    \label{graf-basic}
     \vspace{\baselineskip}
-    \tabcaption{Mezní úhly $\vartheta$}
-    \label{mezni-uhly}
 \end{minipage}
 
-Autor připomíná, že $\vartheta$ značíme úhel ještě před korekcí na systematickou chybu. Úhel po korekci značíme ${\varphi = \vartheta + \vartheta_0}$.
+Následně jsme podle \eqref{eq-deriv} vypočetli numerickou derivaci těchto dat. Protože jednomu bodu grafu $\Delta T / \Delta x$ „náleží“ dva různé body $p,T$, využili jsme průměru $(T_j + T_{j+1})/2$.
 
-Hodnoty Planckovy konstanty vypočtené podle \eqref{planck}, jejich průměř\footnote{Průměr je vážený převráceným čtvercem chyby.} a porovnání se skutečnou hodnotou je v grafu č. \ref{graf-planck}. Vidíme, že se skutečná hodnota signifikantně liší od té naměřené – to protože jsme zatím předpokládali, že systematická chyba $\vartheta_0 = 0$. Numericky nyní vyřešíme, pro jakou hodnotu $\vartheta_0$ se budou skutečná hodnota $h$ a vážený průměr rovnat. Získáme tím
-\begin{equation}
-    \vartheta_0 = 0.55 \°.
-    \label{systematicka_chyba}
-\end{equation}
-
-Následně jsme měřili charakteristická spektra pro různé materiály anod. Pozorovali jsme maxima $n$-tého řádu na těchto úhlech:
-
-\begin{minipage}{0.9\linewidth}
+\phantom{.}
+\begin{minipage}{\linewidth}
+    \vspace{\baselineskip}
+    \vspace{\baselineskip}
     \centering
-    \vspace{\baselineskip}
-    \begin{tabular}{ c|c|c|r|r }
-        \multicolumn{1}{c|}{prvek} &
-        \multicolumn{1}{c|}{$n$} &
-        \multicolumn{1}{c|}{$U [\U{kV}]$} &
-        \multicolumn{1}{c|}{$\theta(K_\alpha) [\°]$} &
-        \multicolumn{1}{c}{$\theta(K_\beta) [\°]$}
-        % \csvreader[ head to column names ]{data_charakt.csv}{}
-        % {
-        %     \csviffirstrow{\\\hline}{\\}
-        %     $^{\valZ}$\prvek &
-        %     \valn & \valU &
-        %     \thetaalpha &
-        %     \thetabeta
-        % }
+    \begin{tabular}{ rl|rl|rl }
+        \multicolumn{2}{c}{$x [\U{mm}]$} &
+        \multicolumn{2}{c}{$T [\U{MeV}]$} &
+        \multicolumn{2}{c}{$-\frac{\Delta T}{\Delta x} \; [\U{keV/m}]$}
+        \\[5pt]\hline
+        \csvreader[
+            head to column names,
+            separator=comma
+        ]{data-deriv.csv}{}
+        {
+           \csviffirstrow{}{\\}
+           \pos &$\pm$ \poserr & \energ & $\pm$ \energerr & \deriv & $\pm$ \deriverr
+        }
     \end{tabular}
     \vspace{\baselineskip}
-    \tabcaption{Úhly $\vartheta$ maxim charakteristického záření}
-    \label{charakt-uhly}
+    \tabcaption{Numerická derivace}
+    \label{energie-tlak}
+    \vspace{\baselineskip}
 \end{minipage}
 
-Použitím hodnot z tabulky \ref{charakt-uhly} a vypočtené systematické chyby z \eqref{systematicka_chyba} jsme sestavili graf \ref{graf-linearni}. Podle Moseleyova zákona má být vztah mezi $Z$ a $\sqrt{n/\sin\varphi}$ lineární.
+\phantom{.}
+\begin{minipage}{\linewidth}
+    \vspace{\baselineskip}
+    \centering
+    \def\gptboxheight{15cm}
+    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 15cm, 8cm}]
+        set datafile separator ','
 
-Proložením z grafu jsme získali parametry fitu
-% \csvreader[ head to column names ]{fity.csv.tmp}{}
-% {
-%     ${A(K_\alpha) = \valA}, \; {B(K_\alpha) = \valB}, \; {A(K_\beta) = \valC},$ ${B(K_\beta) = \valD}$
-% }. Z toho jsme vypočetli hodnoty Rydbergových konstant:
+        set xlabel '$T [MeV]$'
+        set ylabel '$-\Delta T / \Delta x \; [keV / m]$'
+
+        set xrange [2:5.5]
+        #set yrange [0:7]
+
+        xi = 0.31
+        f(T) = 2/(10*3*xi*sqrt(T))
+
+        plot 'data-deriv.csv' skip 1 using 3:5:6 w yerror t 'numerická derivace dat', f(x) t 'empirický vztah $\frac{2}{3\xi\sqrt T}$'
+    \end{gnuplot}
+    \figcaption{Přesnost numerické derivace je žalostná.}
+    \label{graf-deriv}
+    \vspace{\baselineskip}
+\end{minipage}
+
+Tohle je ten okamžik, kdy se autorovi před očima začaly zjevovat všechny jeho životní chyby. Jen se podívejte na graf v obrázku \ref{graf-deriv}, je to kolosální propadák! Zcela jistě existují i robustnější způsoby výpočtu numerické derivace, autorovi bohužel nejsou známé. Nenechme se ovšem tímto dílčím neúspěchem odradit a pokračujme k měření izotopů plutonia.
+
+\subsection{Izotopy plutonia}
+Při měření směsi izotopů $\,{}^{238}$Pu\;\,a $\,{}^{239}$Pu po dobu $t=1161 \U{s}$ jsme dostali spektrum obsahující dva píky. Pík s vyšší energií náleží $^{238}$Pu a je tvořen $N({}^{238}\text{Pu}) = 1\,326$ impulzy. Druhý pík má $N({}^{239}\text{Pu}) = 217\,351$ impulzů. Četnosti dosadíme do vzorce \eqref{eq-relativni-zastoupeni}:
+\begin{equation*}
+    R({}^{238}\text{Pu})
+    = \frac{N({}^{238}\text{Pu})}{\, N({}^{238}\text{Pu}) +  \dfrac{t_½({}^{239}\text{Pu})}{t_½({}^{238}\text{Pu})} \, N({}^{239}\text{Pu}) \,}
+    = 2.22 \cdot 10^{-5}
+\end{equation*}
+Dosazením do vzorce pro chybu $R$ ovšem dostaneme nerealisticky vysoké číslo:
+\begin{equation*}
+    \eta\big(R({}^{238}\text{Pu})\big)
+    = \frac{t_½({}^{239}\text{Pu})}{t_½({}^{238}\text{Pu})}
+    \sqrt{\frac{N({}^{239}\text{Pu})}{N({}^{238}\text{Pu})^2} + \frac{N({}^{239}\text{Pu})^2}{N({}^{238}\text{Pu})^3}}
+    = 2 \cdot 10^{-2}
+\end{equation*}
+Naměřené energie píků jsou:
 \begin{align*}
-    % \csvreader[ head to column names ]{rydberg.csv.tmp}{}
-    % {
-    %     K_\alpha: \; R_\omega &= \valalpha \cdot 10^{16} \U{s^{-1}}\\
-    %     K_\beta: \; R_\omega &= \valbeta \cdot 10^{16} \U{s^{-1}}
-    % }
+    T({}^{238}\text{Pu}) &= 5520.5 \pm 0.9 \U{keV} \\
+    T({}^{239}\text{Pu}) &= 5162.5 \pm 0.1 \U{keV}
 \end{align*}
 
-\pagebreak
+
 
 \section{Diskuse}
-Při měření se vyskytovala systematická chyba naměřeného úhlu. Ta byla korigována tak, aby $h$ vycházelo podle tabelovaných hodnot.
+Při ověřování empirické formule pro úbytek energie byla použita numerická metoda, která není robustní, tzn. je velmi náchylná na šum ve vstupních datech. Lepšího výsledku bychom dosáhli například tak, že bychom proložili křivku původními daty a tuto analyticky derivovali. Bylo by ovšem potřeba vypočítat konfidenční oblast takové křivky.
 
-V grafu $I(\vartheta)$ závislosti intenzity na úhlu jsme pro velmi malé úhly pozorovali zesílení šumu – to bylo způsobeno faktem, že nemáme dokonale směrový zdroj ani detektor, detekovali jsme tedy záření, které nebylo difraktováno, ale doletělo do detektoru přímo. Pro vyšší úhly, tedy tam, kde jsme měřili hodnoty potřebné pro experiment, už tento jev neměl vliv.
-
-Z grafu na obrázku č. \ref{graf-linearni} je vidět, že směrnice přechodů $K_\alpha$ a $K_\beta$ jsou jiné. To je pravděpodobně dáno tím, že Rydbergův vztah je pro všechny atomy, které nejsou vodík, pouze přibližný. I vypočtené hodnoty Rydbergovy konstatnty jsou kvůli tomu velmi odlišné pro $K_\alpha$ a $K_\beta$.
+Vypočtená chyba relativního zastoupení $R$ vychází nerealisticky velká, k jejímu výpočtu byl přitom použit vzorec pro šíření chyby, který alespoň pro gaussovsky distribuované malé chyby platí, a pozorování, že pro počet impulzů platí $\sigma(N) = \sqrt{N}$ (tj. je poissonovsky rozložený). K takto zkreslenému výsledku jsme došli buďto proto, že součet všech impulzů v píku už není rozložený poissonovsky, nebo proto, že použitý vzorec pro šíření chyby neplatí pro poissonovská data ani přibližně. Ať tak nebo tak, autor je výsledkem upřímně velmi překvapen, a to i přesto, že se ve fyzikálním praktiku takové zábavné nesrovnalosti nevyskytují zrovna zřídka.
 
 
 \section{Závěr}
-Podařilo se vypočítat hodnotu Planckovy konstanty, jejím porovnáním se skutečnou hodnotou se podařilo určit systematickou chybu úhlu $\vartheta_0 = 0.55 \°$.
-
-Podařilo se ověřit platnost Moseleyova zákona. Rydbergovy konstanty, které vyšly byly:
-\begin{align*}
-    % \csvreader[ head to column names ]{rydberg.csv.tmp}{}
-    % {
-    %     K_\alpha: \; R_\omega &= \valalpha \cdot 10^{16} \U{s^{-1}}\\
-    %     K_\beta: \; R_\omega &= \valbeta \cdot 10^{16} \U{s^{-1}}
-    % }
-\end{align*}
-Jejich průměr je tedy $R_\omega = (2.1 \pm 0.5) \cdot 10^{16} \U{s^{-1}}$. Skutečná hodnota Rydbergovy konstanty je:
+Podařilo se kalibrovat α-spektrometr, jeho rozlišení je
 \begin{equation*}
-    R_\omega = 2.0606 \cdot 10^{16} \U{s^{-1}}
+    \sigma(T) = 0.31 \U{keV} \: .
+\end{equation*}
+Dále jsme určili aktivitu kalibračního vzorku $^{241}$Am jako:
+\begin{equation*}
+    A = (6400 \pm 1500) \U{s^{-1}}
+\end{equation*}
+Podařilo se proměřit závislost $T(p)$ a porovnat úbytek energie s empirickým vztahem. Ačkoliv empirický vztah řádově odpovídal naměřeným výsledkům, data bohužel obsahovala příliš šumu na to, abychom pozorovali empirickou závislost.
+\\
+Podařilo se naměřit energie dvou izotopů plutonia
+\begin{align*}
+    T({}^{238}\text{Pu}) &= 5520.5 \pm 0.9 \U{keV} \\
+    T({}^{239}\text{Pu}) &= 5162.5 \pm 0.1 \U{keV}
+\end{align*}
+a vypočítat, že relativní zastoupení izotopu $^{238}$Pu ve vzorku je
+\begin{equation*}
+    R({}^{238}\text{Pu})
+    = 2.22 \cdot 10^{-5} \: .
 \end{equation*}
 
 
-
-
 \section{Literatura}
-[1] Studijní texty k laboratorní úloze: Studium rentgenových spekter; Kolektiv autorů ZFP KVOF MFF UK, online zdroj, [cit. 20.11.2019], dostupné na stránkách fyzikálního praktika IV
+[1] Nosek D. a J. Vrzal. Spektrometrie záření α. Dostupné z: \url{https://physics.mff.cuni.cz/vyuka/zfp/_media/zadani/texty/txt_405.pdf}. 30. září 20031
+\\
+\st{[2] Nesnáším BibTeX.}
+
 
 \end{document}
