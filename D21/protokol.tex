@@ -296,6 +296,7 @@ To jsou lineární vztahy tvaru $y = A(x - B)$, ze kterých můžeme lineární 
     \end{gnuplot}
     \vspace{-2\baselineskip}
     \caption{Lineární závislost z \eqref{linearni-k-alpha} a \eqref{linearni-k-beta}}
+    \vspace{-13cm}
     \label{graf-linearni}
 \end{wrapfigure}
 Nejprve jsme měřili brzdné záření na rentgence s měděnou anodou. Extrapolací z grafů jsme určili mezní úhly:
@@ -349,10 +350,12 @@ Následně jsme měřili charakteristická spektra pro různé materiály anod. 
     \label{charakt-uhly}
 \end{minipage}
 
+Použitím hodnot z tabulky \ref{charakt-uhly} a vypočtené systematické chyby z \eqref{systematicka_chyba} jsme sestavili graf \ref{graf-linearni}. Podle Moseleyova zákona má být vztah mezi $Z$ a $\sqrt{n/\sin\varphi}$ lineární.
+
 Proložením z grafu jsme získali parametry fitu
 \csvreader[ head to column names ]{fity.csv.tmp}{}
 {
-    $A(K_\alpha) = \valA, \; B(K_\alpha) = \valB \; A(K_\beta) = \valC \; B(K_\beta) = \valD$
+    ${A(K_\alpha) = \valA}, \; {B(K_\alpha) = \valB}, \; {A(K_\beta) = \valC},$ ${B(K_\beta) = \valD}$
 }. Z toho jsme vypočetli hodnoty Rydbergových konstant:
 \begin{align*}
     \csvreader[ head to column names ]{rydberg.csv.tmp}{}
@@ -366,11 +369,14 @@ Proložením z grafu jsme získali parametry fitu
 
 \section{Diskuse}
 Při měření se vyskytovala systematická chyba naměřeného úhlu. Ta byla korigována tak, aby $h$ vycházelo podle tabelovaných hodnot.
-Vypočtená Rydbergova konstanta je zatížena velkou statistickou chybou danou malým počtem naměřených bodů pro lineární regresi.
+
+V grafu $I(\vartheta)$ závislosti intenzity na úhlu jsme pro velmi malé úhly pozorovali zesílení šumu – to bylo způsobeno faktem, že nemáme dokonale směrový zdroj ani detektor, detekovali jsme tedy záření, které nebylo difraktováno, ale doletělo do detektoru přímo. Pro vyšší úhly, tedy tam, kde jsme měřili hodnoty potřebné pro experiment, už tento jev neměl vliv.
+
+Z grafu na obrázku č. \ref{graf-linearni} je vidět, že směrnice přechodů $K_\alpha$ a $K_\beta$ jsou jiné. To je pravděpodobně dáno tím, že Rydbergův vztah je pro všechny atomy, které nejsou vodík, pouze přibližný. I vypočtené hodnoty Rydbergovy konstatnty jsou kvůli tomu velmi odlišné pro $K_\alpha$ a $K_\beta$.
 
 
 \section{Závěr}
-Podařilo se vypočítat hodnotu Planckovy konstanty, jejím porovnáním se skutečnou hodnotou se podařilo určit systematickou chybu úhlu $\vartheta_0 = 0.574 \°$.
+Podařilo se vypočítat hodnotu Planckovy konstanty, jejím porovnáním se skutečnou hodnotou se podařilo určit systematickou chybu úhlu $\vartheta_0 = 0.55 \°$.
 
 Podařilo se ověřit platnost Moseleyova zákona. Rydbergovy konstanty, které vyšly byly:
 \begin{align*}
@@ -380,7 +386,7 @@ Podařilo se ověřit platnost Moseleyova zákona. Rydbergovy konstanty, které 
         K_\beta: \; R_\omega &= \valbeta \cdot 10^{16} \U{s^{-1}}
     }
 \end{align*}
-Skutečná hodnota Rydbergovy konstanty je:
+Jejich průměr je tedy $R_\omega = (2.1 \pm 0.5) \cdot 10^{16} \U{s^{-1}}$. Skutečná hodnota Rydbergovy konstanty je:
 \begin{equation*}
     R_\omega = 2.0606 \cdot 10^{16} \U{s^{-1}}
 \end{equation*}
