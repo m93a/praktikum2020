@@ -1,0 +1,91 @@
+% !TEX program = xelatex
+
+% Základní balíčky
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{nonfloat}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{gensymb}
+\usepackage[top = 1cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
+
+% Language-related
+\usepackage[czech]{babel}
+\usepackage{csquotes}
+\usepackage{polyglossia}
+\setmainlanguage{czech}
+\setotherlanguage{greek}
+
+% Bibtex je oficiálně mrtka
+% \usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+% \usepackage{etoolbox}
+% \patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+% \bibliography{protokol}
+
+% Pro titulní stránku
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{framed}
+\usepackage{array}
+
+% Vlastní balíčky
+\usepackage{gnuplottex}
+\usepackage{epstopdf}
+\usepackage{csvsimple}
+\usepackage{units}
+
+\usepackage{soul}
+
+
+
+
+\renewcommand{\U}[1]{\ensuremath{\,\mathrm{#1}}}
+\newcommand{\°}{\degree}
+
+\newcommand{\titjmeno}{Michal Grňo}
+\newcommand{\titobor}{FOF}
+
+
+\newcommand{\titcislo}{D5}
+\newcommand{\titnazev}{Spektrometrie alfa}
+\newcommand{\titmereni}{\st{nikdy}}
+\newcommand{\titodevzdani}{8. 11. 2020}
+
+
+\begin{document}
+
+\include{titulka}
+\setmainfont{Linux Libertine O}
+
+
+
+
+\section{Pracovní úkoly}
+\begin{enumerate}
+    \item Naměřte číslo tři.
+\end{enumerate}
+
+\section{Teoretická část}
+Měli bychom naměřit 3.
+
+\section{Výsledky měření}
+Naměřili jsme $2,8 \pm 0,3$.
+
+
+\section{Diskuse}
+Bylo to ok? Jo.
+
+\section{Závěr}
+Pěkný 👍️
+
+
+\section{Literatura}
+[1] Nosek D. a J. Vrzal. Spektrometrie záření α. Dostupné z: \url{https://physics.mff.cuni.cz/vyuka/zfp/_media/zadani/texty/txt_405.pdf}. 30. září 20031
+\\
+\st{[2] Nesnáším BibTeX.}
+
+
+\end{document}

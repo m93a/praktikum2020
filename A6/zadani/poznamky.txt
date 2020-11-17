@@ -1,0 +1,27 @@
+e-/e+/gamma: x10GeV
+mion: 3 obrázky: zastavení, ionizace, brzdné záření
+mion: odhad, při jaké energii doletí zhruba na konec kalorimetru
+hadronová sprška: p/n/pi+-/lambda/k+-/K0, x10GeV
+pi0->gammagamma
+pi0: určit, kdy jsou 2 gamma ještě rozlišitelné
+pi0->e-e+gamma
+Lambda0, K0s: 2 obrazky: rozpad na neutralni a na nabite castice
+
+Batch
+--------
+Grno: 14 GeV
+Jirmanova: 20 GeV
+Brosko: 10 GeV
+Zaijcek: 50 GeV
+
+Scan
+--------
+chyba stredni hodnoty = sigma gausovskeho rozdeleni / sqrt(poctu simulaci)
+grno: pi- 15-55 GeV
+jirmanova: e- 10-30 GeV
+brosko: pi- 10-50 GeV
+zajicek: e- 12-24 GeV
+
+E0 ≡ Beam particle E
+Edep ≡ Deposited E ≡ Emean
+σ(Edep) ≡ RMS ≡ rmsE
