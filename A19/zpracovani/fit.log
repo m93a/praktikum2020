@@ -1,0 +1,35 @@
+
+
+*******************************************************************************
+Thu Nov 19 18:29:27 2020
+
+
+FIT:    data read from 'data_J_a.txt' yerrors
+        format = z:s
+        #datapoints = 8
+function used for fitting: f(x)
+	f(x) = a*x + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 3.3206553532e+08   0.00e+00  1.69e+04    1.000000e+00   1.000000e+00
+   5 8.2661928667e+02  -3.15e-08  1.69e-01   -4.585899e-03   4.350079e+00
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 826.619
+rel. change during last iteration : -3.14674e-13
+
+degrees of freedom    (FIT_NDF)                        : 6
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 11.7375
+variance of residuals (reduced chisquare) = WSSR/ndf   : 137.77
+p-value of the Chisq distribution (FIT_P)              : 0
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -0.0045859       +/- 0.0006497    (14.17%)
+b               = 4.35008          +/- 0.002198     (0.05054%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.960  1.000 
