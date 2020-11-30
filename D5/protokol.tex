@@ -4,12 +4,14 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{fontspec}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{nonfloat}
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{gensymb}
+\usepackage{mathtools}
 \usepackage[top = 1cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
 
 % Language-related
@@ -39,6 +41,11 @@
 
 \usepackage{soul}
 
+
+
+\newcommand\kludgequote[1]{%
+    \prescript {} {\text{\normalsize„}} {\mkern-1.5mu#1}
+    {\vphantom{#1}}^{\mkern-1.5mu\text{\normalsize\raisebox{-0.5ex}{“}}}}
 
 
 
@@ -73,12 +80,12 @@
 \end{enumerate}
 
 \section{Teoretická část}
-V práci budeme měřit α-záření pomocí křemíkového α-spektrometru. Spektrometr měří počet signálů spadajících do každého \textit{kanálu} $n(\mathrm{ch.})$, číslo kanálu je přímo úměrné kinetické energii $T$ příchozí částice. Počet detekovaných částic je zatížený chybou, která se rovná $\sigma(n) = \sqrt{n}$ (protože se jedná o Poissonovo rozložení). Detektor kalibrujeme tak, že naměříme spektrum známého prvku a kanálu, ve kterém se nachází těžiště naměřeného píku, přiřadíme předpokládanou energii. Pro energetické rozlišení kalibrovaného přístroje platí vztah [1]
+V práci budeme měřit α-záření pomocí křemíkového α-spektrometru. Spektrometr měří počet signálů spadajících do každého \textit{kanálu} $n(\mathrm{ch.})$, číslo kanálu je přímo úměrné kinetické energii $T$ příchozí částice. Počet detekovaných částic je zatížený chybou, která se rovná $\sigma(n) = \sqrt{n}$ (protože se jedná o Poissonovo rozložení). Detektor kalibrujeme tak, že naměříme spektrum známého prvku a kanálu, ve kterém se nachází těžiště naměřeného píku, přiřadíme předpokládanou energii. Při následném měření určujeme naměřenou energii $T$ jako maximum odpovídajícího píku. Pro chybu naměřené energie platí vztah [1]
 \begin{equation}
     \sigma(T) = \frac{\Gamma}{2 \sqrt{N \, 2 \ln 2}} \: ,
     \label{eq-energie-neurcitost}
 \end{equation}
-kde $\Gamma$ je \textit{pološířka} píku (tj. plná šířka v polovině maxima, FWHM) a $N$ je celkový počet detekovaných impulzů – tedy součet $n$ jednotlivých kanálů.
+kde $\Gamma$ je energetické rozlišení spektrometru (tj. šířka píku v polovině maxima, FWHM) a $N$ je celkový počet detekovaných impulzů v píku – tedy součet $n$ jednotlivých kanálů.
 
 \bigskip
 
@@ -102,7 +109,7 @@ Pro záření o energii mezi 4 a 7 MeV platí pro ztrátu kinetické energie ve 
 kde $x$ je vzdálenost od zdroje a $\xi = 0.31 \U{cm \cdot MeV^{-3/2}}$. V našem experimentu nebudeme měnit vzdálenost detektoru, ale tlak – bude se tedy měnit \textit{efektivní tloušťka vzduchového sloupce} $x_{\text{eff.}} = \ell \, p / p_{\text{atm.}} \:$. Naším cílem bude ověřit platnost formule \eqref{eq-empiricka} pomocí numerické derivace:
 \begin{align}
     T'(x_{\text{eff.}})
-    = „\frac{\Delta T\;}{\Delta x_{\text{eff.}}\!\!}“
+    = \kludgequote{ \frac{\Delta T\;}{\Delta x_{\text{eff.}}\!\!} }
     = \frac{T_{j+1} - T_j}{x_{j+1} - x_j}
     \label{eq-deriv}
 \end{align}
@@ -139,11 +146,7 @@ a následnou úpravou.
 \section{Výsledky měření}
 
 \subsection{Kalibrace, rozlišení a aktivita vzorku}
-Uvedená plocha detektoru je ${900 \U{mm^2}}$, vzorek $^{241}$Am jsme umístili do vzdálenosti ${\ell = 36.4 \pm 0.5 \U{mm}}$ od něj. Poté jsme měřili po dobu $t=116.2 \U{s}$. Naměřili celkem $N = 4.017 \cdot 10^4$ impulzů a těžiště naměřeného píku identifikovali s očekávanou energií $T = 5.4857 \U{MeV}$, šířka píku byla $\Gamma = 145.9 \U{keV}$. Podle \eqref{eq-energie-neurcitost} vypočítáme rozlišení kalibrovaného přístroje:
-\begin{equation*}
-    \sigma(T) = \frac{\Gamma}{2 \sqrt{N \, 2 \ln 2}}
-    = 0.31 \U{keV}
-\end{equation*}
+Uvedená plocha detektoru je ${900 \U{mm^2}}$, vzorek $^{241}$Am jsme umístili do vzdálenosti ${\ell = 36.4 \pm 0.5 \U{mm}}$ od něj. Poté jsme měřili po dobu $t=116.2 \U{s}$. Naměřili celkem $N = 4.017 \cdot 10^4$ impulzů a těžiště naměřeného píku identifikovali s očekávanou energií $T = 5.4857 \U{MeV}$, rozlišení kalibrovaného přístroje (tj. šířka píku) bylo $\Gamma = 145.9 \U{keV}$.
 
 Dále z týchž dat podle \eqref{eq-aktivita} vypočteme celkovou aktivitu vzorku:
 \begin{gather*}
@@ -151,7 +154,7 @@ Dále z týchž dat podle \eqref{eq-aktivita} vypočteme celkovou aktivitu vzork
     \eta(A) = \sqrt{N^{-1} + 4 \eta(\ell)^2}
 \end{gather*}
 \begin{equation*}
-    A = (6400 \pm 1500) \U{s^{-1}}
+    A = (6400 \pm 180) \U{s^{-1}}
 \end{equation*}
 
 \subsection{Měření s proměnným tlakem}
@@ -226,7 +229,7 @@ Následně jsme podle \eqref{eq-deriv} vypočetli numerickou derivaci těchto da
     \end{tabular}
     \vspace{\baselineskip}
     \tabcaption{Numerická derivace}
-    \label{energie-tlak}
+    \label{tabulka-deriv}
     \vspace{\baselineskip}
 \end{minipage}
 
@@ -238,23 +241,30 @@ Následně jsme podle \eqref{eq-deriv} vypočetli numerickou derivaci těchto da
     \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 15cm, 8cm}]
         set datafile separator ','
 
+        a = 1
+        g(x) = a/sqrt(x)
+        fit g(x) 'data-deriv.csv' skip 1 using 3:5 via a
+
+        gplus(x) = (a+a_err*1.3)/sqrt(x)
+        gminus(x) = (a-a_err*1.3)/sqrt(x)
+
+        xi = 0.31
+        f(T) = 2/(10*3*xi*sqrt(T))
+
         set xlabel '$T [MeV]$'
         set ylabel '$-\Delta T / \Delta x \; [keV / m]$'
 
         set xrange [2:5.5]
         #set yrange [0:7]
 
-        xi = 0.31
-        f(T) = 2/(10*3*xi*sqrt(T))
-
-        plot 'data-deriv.csv' skip 1 using 3:5:6 w yerror t 'numerická derivace dat', f(x) t 'empirický vztah $\frac{2}{3\xi\sqrt T}$'
+        plot 'data-deriv.csv' skip 1 using 3:5 t 'numerická derivace dat', g(x) t 'fit vztahem $a/\sqrt{T}$' lc rgb "green", gplus(x) not lc rgb "green" dashtype 2, gminus(x) not lc rgb "green" dashtype 2, f(x) t 'empirický vztah $2 / 3\xi\sqrt T$' lc rgb "red"
     \end{gnuplot}
-    \figcaption{Přesnost numerické derivace je žalostná.}
+    \figcaption{Ztráta kinetické energie jako funkce vzdálenosti.}
     \label{graf-deriv}
     \vspace{\baselineskip}
 \end{minipage}
 
-Tohle je ten okamžik, kdy se autorovi před očima začaly zjevovat všechny jeho životní chyby. Jen se podívejte na graf v obrázku \ref{graf-deriv}, je to kolosální propadák! Zcela jistě existují i robustnější způsoby výpočtu numerické derivace, autorovi bohužel nejsou známé. Nenechme se ovšem tímto dílčím neúspěchem odradit a pokračujme k měření izotopů plutonia.
+Do grafu v obrázku \ref{graf-deriv} jsme zanesli numerickou derivaci dat z tabulky \ref{tabulka-deriv}, proloženou jednoparametrovým fitem $a/\sqrt{T}$. Fit porovnáváme s empirickým vzthem \eqref{eq-empiricka}.
 
 \subsection{Izotopy plutonia}
 Při měření směsi izotopů $\,{}^{238}$Pu\;\,a $\,{}^{239}$Pu po dobu $t=1161 \U{s}$ jsme dostali spektrum obsahující dva píky. Pík s vyšší energií náleží $^{238}$Pu a je tvořen $N({}^{238}\text{Pu}) = 1\,326$ impulzy. Druhý pík má $N({}^{239}\text{Pu}) = 217\,351$ impulzů. Četnosti dosadíme do vzorce \eqref{eq-relativni-zastoupeni}:
@@ -263,13 +273,15 @@ Při měření směsi izotopů $\,{}^{238}$Pu\;\,a $\,{}^{239}$Pu po dobu $t=116
     = \frac{N({}^{238}\text{Pu})}{\, N({}^{238}\text{Pu}) +  \dfrac{t_½({}^{239}\text{Pu})}{t_½({}^{238}\text{Pu})} \, N({}^{239}\text{Pu}) \,}
     = 2.22 \cdot 10^{-5}
 \end{equation*}
-Dosazením do vzorce pro chybu $R$ ovšem dostaneme nerealisticky vysoké číslo:
-\begin{equation*}
+Dosazením do vzorce pro chybu $R$ dostaneme:
+\begin{gather*}
     \eta\big(R({}^{238}\text{Pu})\big)
     = \frac{t_½({}^{239}\text{Pu})}{t_½({}^{238}\text{Pu})}
     \sqrt{\frac{N({}^{239}\text{Pu})}{N({}^{238}\text{Pu})^2} + \frac{N({}^{239}\text{Pu})^2}{N({}^{238}\text{Pu})^3}}
     = 2 \cdot 10^{-2}
-\end{equation*}
+    \\[5pt]
+    \sigma\big(R({}^{238}\text{Pu})\big) = \eta(R) \; R = 4 \cdot 10^{-7}
+\end{gather*}
 Naměřené energie píků jsou:
 \begin{align*}
     T({}^{238}\text{Pu}) &= 5520.5 \pm 0.9 \U{keV} \\
@@ -277,21 +289,20 @@ Naměřené energie píků jsou:
 \end{align*}
 
 
+\pagebreak
 
 \section{Diskuse}
-Při ověřování empirické formule pro úbytek energie byla použita numerická metoda, která není robustní, tzn. je velmi náchylná na šum ve vstupních datech. Lepšího výsledku bychom dosáhli například tak, že bychom proložili křivku původními daty a tuto analyticky derivovali. Bylo by ovšem potřeba vypočítat konfidenční oblast takové křivky.
-
-Vypočtená chyba relativního zastoupení $R$ vychází nerealisticky velká, k jejímu výpočtu byl přitom použit vzorec pro šíření chyby, který alespoň pro gaussovsky distribuované malé chyby platí, a pozorování, že pro počet impulzů platí $\sigma(N) = \sqrt{N}$ (tj. je poissonovsky rozložený). K takto zkreslenému výsledku jsme došli buďto proto, že součet všech impulzů v píku už není rozložený poissonovsky, nebo proto, že použitý vzorec pro šíření chyby neplatí pro poissonovská data ani přibližně. Ať tak nebo tak, autor je výsledkem upřímně velmi překvapen, a to i přesto, že se ve fyzikálním praktiku takové zábavné nesrovnalosti nevyskytují zrovna zřídka.
+Při ověřování empirické formule pro úbytek energie byla použita numerická metoda, která není robustní, tzn. je velmi náchylná na šum ve vstupních datech. Nicméně když jsme tato data proložili fitem, empirický vztah ležel na okraji konfidenční oblasti. Výsledek je tedy v souladu s očekáváním.
 
 
 \section{Závěr}
 Podařilo se kalibrovat α-spektrometr, jeho rozlišení je
 \begin{equation*}
-    \sigma(T) = 0.31 \U{keV} \: .
+    \Gamma = 145.9 \U{keV} \: .
 \end{equation*}
 Dále jsme určili aktivitu kalibračního vzorku $^{241}$Am jako:
 \begin{equation*}
-    A = (6400 \pm 1500) \U{s^{-1}}
+    A = (6400 \pm 180) \U{s^{-1}}
 \end{equation*}
 Podařilo se proměřit závislost $T(p)$ a porovnat úbytek energie s empirickým vztahem. Ačkoliv empirický vztah řádově odpovídal naměřeným výsledkům, data bohužel obsahovala příliš šumu na to, abychom pozorovali empirickou závislost.
 \\
@@ -303,7 +314,7 @@ Podařilo se naměřit energie dvou izotopů plutonia
 a vypočítat, že relativní zastoupení izotopu $^{238}$Pu ve vzorku je
 \begin{equation*}
     R({}^{238}\text{Pu})
-    = 2.22 \cdot 10^{-5} \: .
+    = (2.22 \pm 0.04) \cdot 10^{-5} \: .
 \end{equation*}
 
 
