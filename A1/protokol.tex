@@ -96,12 +96,12 @@ Nás budou zajímat především bosony $Z^0$ a $H^0$, jejichž typické rozpady
     H^0 &: 2 \, Z^0 \\
     H^0 &: 2 \, \gamma
 \end{align*}
-Toto nejsou zdaleka jediné možné rozpady, ale jsou pro nás nejsnáze detekovatelné. Klidové hmotnosti těchto bosonů~jsou:
+Toto nejsou zdaleka jediné možné rozpady, ale jsou pro nás nejsnáze detekovatelné. Klidové hmotnosti těchto bosonů~jsou [1]:
 \begin{align*}
     m(Z^0) &= (91.188 \pm 0.002) \U{GeV/c^2} \\
     m(H^0) &= (125.09 \pm 0.24) \U{GeV/c^2} \\
 \end{align*}
-Další částice s podobnými rozpady, které budeme schopni detekovat, jsou mezony $\Jpsi$ (\textit{charmonium}, vázaný stav $c\overline c$) a $\Upsilon$ (\textit{bottomonium}, vázaný stav $b\overline b$). Jejich klidové hmotnosti jsou:
+Další částice s podobnými rozpady, které budeme schopni detekovat, jsou mezony $\Jpsi$ (\textit{charmonium}, vázaný stav $c\overline c$) a $\Upsilon$ (\textit{bottomonium}, vázaný stav $b\overline b$). Jejich klidové hmotnosti jsou [1]:
 \begin{align*}
     m(\Jpsi) &= (3.096900 \pm 0.000006) \U{GeV/c^2} \\
     m(\Upsilon) &= (10.5794± \pm 0.0012) \U{GeV/c^2} \\
@@ -180,15 +180,128 @@ což je v souladu s hmotností $Z$ bosonu. Také jsme detekovali vyšší množs
 \subsection{Soubor dat od různých autorů}
 V rámci praktika se shromažďují události identifikované všemi studenty, kteří se úlohy A1 účastní. Tento soubor obsahuje o několik řádů vyšší počet identifikovaných událostí, proto umožňuje identifikaci píků, které jsme ve vlastních datech nemohli pozorovat.
 
+Na obrázku \ref{obr:c1-full} vidíme všechna data odpovídající rozpadům na leptonové páry (tj. $e^- \!\!+\! e^+$ a $\mu^- \!\!+\! \mu^+$). Kromě píku kolem $100 \U{GeV/c^2}$ vidíme i píky na $1 \U{TeV/c^2}$, což je přibližně kintetická energie letícího komára [2], a $1.5 \U{TeV/c^2}$. Na obrázku \ref{obr:c1-Z} vidíme detail píku $Z$ bosonu a na obrázku \ref{obr:c1-Y} potom detail píku, který jsme dříve neidentifikovali a který odpovídá mezonu $\Upsilon$.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{c1_full.pdf}
+    \vspace{-\baselineskip}
+    \caption{Histogram všech $M_0$ vypočítaných z leptonových párů.}
+    \label{obr:c1-full}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{c1_Z.pdf}
+    \vspace{-\baselineskip}
+    \caption{Detail píku $Z$ bosonu, leptonové páry.}
+    \label{obr:c1-Z}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{c1_Y.pdf}
+    \vspace{-\baselineskip}
+    \caption{Detail píku mezonu $\Upsilon$, leptonové páry.}
+    \label{obr:c1-Y}
+\end{figure}
+
+\noindent
+Pro píky odpovídající $Z$ a $\Upsilon$ jsme provedli fit, střední hodnoty vyšly:
+\begin{align*}
+    M_0(Z) &= (90.24 \pm 0.08) \U{GeV/c^2} \: , \\
+    M_0(\Upsilon) &= (9.82 \pm 0.06) \U{GeV/c^2} \: .
+\end{align*}
+
+Porovnáme-li obrázek \ref{obr:c1-full} odpovídající leptonovým rozpadům s obrázky \ref{obr:c1-photons} (fotonové rozpady) a \ref{obr:c1-electrons} (pouze rozpady na elektron-pozitron), můžeme pozorovat několik kvalitativních rozdílů. Píku bosonu $Z$ je v leptonových a elektronových datech velmi podobný, v datech k fotonům je výrazně širší a posunutý k vyšším energiím. Částice s hmotností $1 \U{TeV/c^2}$ vůbec nemá fotonový pík a částici s hmotností $1.5 \U{TeV/c^2}$ zase chybí elektronový pík.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{c1_photons.pdf}
+    \vspace{-\baselineskip}
+    \caption{Histogram všech $M_0$ vypočítaných z párů fotonů.}
+    \label{obr:c1-photons}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{c1_electrons.pdf}
+    \vspace{-\baselineskip}
+    \caption{Histogram všech $M_0$ vypočítaných z párů elektron-pozitron.}
+    \label{obr:c1-electrons}
+\end{figure}
+
+Porovnali jsme statistiku z různě velkých souborů. Předpokládáme, že střední hodnota fitů bude mít chybu nepřímo úměrnou odmocnině z počtu událostí [1]. Skutečnou závislost chyby na počtu událostí jsme vypsali do tabulky \ref{tab:sirka-peak} a vynesli do grafu v obrázku \ref{obr:sirka-peak} společně s fitem předpokládanou závislostí.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ r|r }
+        \bfseries $N$ & chyba [GeV]
+        \csvreader[ head to column names ]{sirka-peak.csv}{}
+        {
+            \csviffirstrow{\\\hline}{\\} \pocet & \chyba
+        }
+    \end{tabular}
+    \caption{Chyby maxima píku pro $Z$ boson.}
+    \label{tab:sirka-peak}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 9cm, 5cm}]
+        set datafile separator ','
+
+        a = 1
+        f(N) = a / sqrt(N)
+
+        fit f(x) 'sirka-peak.csv' skip 1 via a
+        plot 'sirka-peak.csv' skip 1 t 'data', f(x) t 'fit $a/\sqrt{N}$'
+    \end{gnuplot}
+    \caption{Chyba střední hodnoty píku $Z$ bosonu vs. počet událostí.}
+    \label{obr:sirka-peak}
+\end{figure}
+
+\pagebreak
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \includegraphics[width=0.4\textwidth]{c4_signif.pdf}
+    \vspace{-2\baselineskip}
+    \caption{Signifikance jednotlivých píků.}
+    \label{obr:signif}
+    \vspace{-5cm}
+\end{wrapfigure}
+
+
+Nakonec jsme zkoumali signifikanci naměřených peaků $1 \U{TeV}$ a $1.5 \U{TeV}$. Nulovou hypotézu jsme formulovali tak, že peaky byly způsobeny pouze šumem, ne skutečnou částicí. Standardně se v částicové fyzice požaduje signifikance 5-sigma. Jak je vidět v grafech na obrázku \ref{obr:signif}, této signifikance se nepodařilo dosáhnout ani v jednom případě, ačkoliv pík odpovídající rozpadu foton-foton na $1.5 \U{TeV}$ se této signifikanci blíží. Nulovou hypotézu se tedy nepodařilo vyvrátit a naše data tedy dostatečně neprokázala, že píky nejsou pouze náhodnou fluktuací.
+
 
 \section{Diskuse}
-Hihi
+V datech se podařilo identifikovat dva píky, které neodpovídaly známým částicím. Ačkoliv se nejedná o signifikantní objev podle standardu 5-sigma, je to přesto poměrně přesvědčivá evidence, že by mohly existovat částice s klidovou hmotností $1 \U{TeV/c^2}$ a $1.5 \U{TeV/c^2}$. Lehčí z těchto částic by se rozpadala výhradně na pár lepton-antilepton, těžší z těchto částic na mion-antimion nebo foton-foton. Protože máme o těchto hypotetických částicích pouze velmi málo informací, není snadné určit, jestli odpovídají nějaké teoretické předpovědi. Mohlo by jít o $Z'$ boson a graviton. Nebo by mohlo jít o částice supersymetrické teorie, které mají srandovní jména: třeba smeson tvořený sstrange squarkem a jeho antičásticí, nebo například gaugino bosino wino, což je jedno ze tří hypotetických electroweakin\footnote{Autorův skromný názor je, že částice s takovými názvy by nikdy neměly existovat, a tudíž je neúspěch SUSY pro částicovou fyziku dobrý.}.
+
+V grafu \ref{obr:sirka-peak} skutečná data neodpovídala přesně teoretické závislosti. To mohlo být způsobeno například tím, že jsme nepočítali jenom události v píku, ale i v šumu kolem.
+
+\vspace{3.2cm}
+
+\pagebreak
 
 \section{Závěr}
-Hoho
+Podařilo se zpracovat události ze simulace detektoru ATLAS a ze zpracovaných dat se podařilo určit invariantní hmotnost bosonu $Z$ jako:
+\begin{equation*}
+    m(Z) = (88.2 \pm 3.3) \U{GeV/c^2} \: .
+\end{equation*}
+Dále se ze souboru dat od různých autorů podařilo zpřesnit hmotnost $Z$ a určit hmotnost $\Upsilon$:
+\begin{align*}
+    m(Z) &= (90.24 \pm 0.08) \U{GeV/c^2} \: , \\
+    m(\Upsilon) &= (9.82 \pm 0.06) \U{GeV/c^2} \: .
+\end{align*}
+Také se podařilo identifikovat dvě potenciální neznámé částice, ačkoliv se nejedná o objev se signifikancí 5-sigma.
+
 
 
 \section{Literatura}
 [1] Praktikum částicové a jaderné fyziky. Objevování částic v detektoru ATLAS v CERN. Dostupné z: \url{https://physics.mff.cuni.cz/vyuka/zfp/_media/zadani/texty/txt_401.pdf}. 26. září 2019
+\\\\
+{}[2] Přispěvatelé Wikipedie. Electronvolt. Wikipedia, The Free Encyclopedia. Citováno 2. 12. 2020. Dostupné z: \url{https://en.wikipedia.org/wiki/Electronvolt}
 
 \end{document}

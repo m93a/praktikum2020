@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2020.11.8)  2 DEC 2020 02:07
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2020.11.8)  2 DEC 2020 04:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -495,9 +495,9 @@ Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
 Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(touch w18-test-2020122127.tex)...disabled (restricted).
+runsystem(touch w18-test-2020122268.tex)...disabled (restricted).
 
-runsystem(rm -f w18-test-2020122127.tex)...disabled (restricted).
+runsystem(rm -f w18-test-2020122268.tex)...disabled (restricted).
 
 runsystem(rm -f "protokol.gnuploterrors")...disabled (restricted).
 
@@ -965,9 +965,48 @@ File: c0_full.pdf Graphic file (type pdf)
 [2]
 File: c0_Z.pdf Graphic file (type pdf)
 <use c0_Z.pdf>
+File: c1_full.pdf Graphic file (type pdf)
+<use c1_full.pdf>
+File: c1_Z.pdf Graphic file (type pdf)
+<use c1_Z.pdf>
+File: c1_Y.pdf Graphic file (type pdf)
+<use c1_Y.pdf>
 
-Overfull \hbox (0.99988pt too wide) in paragraph at lines 192--193
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3]
+File: c1_photons.pdf Graphic file (type pdf)
+<use c1_photons.pdf>
+File: c1_electrons.pdf Graphic file (type pdf)
+<use c1_electrons.pdf>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+\openout3 = `protokol-gnuplottex-fig1.gnuplot'.
+
+Opening gnuplot stream protokol-gnuplottex-fig1.gnuplot (./protokol-gnuplottex-fig1.tex
+\gptboxheight=\skip70
+\gptboxwidth=\skip71
+\gptboxtext=\box57
+File: protokol-gnuplottex-fig1.eps Graphic file (type eps)
+<protokol-gnuplottex-fig1.eps>
+)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4]
+File: c4_signif.pdf Graphic file (type pdf)
+<use c4_signif.pdf>
+ [5]
+Overfull \hbox (0.99988pt too wide) in paragraph at lines 303--306
 \TU/LinuxLibertineO(0)/m/n/10 [1] Praktikum částicové a jaderné fyziky. Objevování částic v detektoru ATLAS v CERN. Dostupné z: []$[][][][][] [] [] [] [][][][][][][] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 303--306
+
  []
 
 The property list \polyglossia@langsetup contains the pairs (without outer
@@ -1020,9 +1059,9 @@ braces):
 >  {greek/babelname}  =>  {greek}
 >  {greek/localnumeral}  =>  {greeknumerals}
 >  {greek/Localnumeral}  =>  {Greeknumerals}.
-[3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 194.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 194.
+[6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 307.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 307.
  (./protokol.aux (./titulka.aux)
 LaTeX Info: Redefining \rmfamily on input line 23.
 LaTeX Info: Redefining \sffamily on input line 23.
@@ -1031,19 +1070,19 @@ LaTeX Info: Redefining \rmfamily on input line 27.
 LaTeX Info: Redefining \sffamily on input line 27.
 LaTeX Info: Redefining \ttfamily on input line 27.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 194.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 194.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 307.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 307.
 Package rerunfilecheck Info: File `protokol.out' has not changed.
 (rerunfilecheck)             Checksum: 2CDA0C44BF126F7CF3A919C8926CABF8;653.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 194.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 307.
  ) 
 Here is how much of TeX's memory you used:
- 19319 strings out of 480996
- 363942 string characters out of 5915727
- 726430 words of memory out of 5000000
- 36009 multiletter control sequences out of 15000+600000
- 541812 words of font info for 75 fonts, out of 8000000 for 9000
+ 19438 strings out of 480996
+ 365967 string characters out of 5915727
+ 727041 words of memory out of 5000000
+ 36099 multiletter control sequences out of 15000+600000
+ 541820 words of font info for 76 fonts, out of 8000000 for 9000
  428 hyphenation exceptions out of 8191
- 67i,8n,102p,1000b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,10n,102p,1033b,570s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on protokol.pdf (4 pages).
+Output written on protokol.pdf (7 pages).
