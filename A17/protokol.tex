@@ -1,0 +1,114 @@
+% !TEX program = xelatex
+
+% Základní balíčky
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{nonfloat}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{gensymb}
+\usepackage[top = 1cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
+
+% Language-related
+\usepackage[czech]{babel}
+\usepackage{csquotes}
+\usepackage{polyglossia}
+\setmainlanguage{czech}
+\setotherlanguage{greek}
+
+% Bibtex je oficiálně mrtka
+% \usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+% \usepackage{etoolbox}
+% \patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+% \bibliography{protokol}
+
+% Pro titulní stránku
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{framed}
+\usepackage{array}
+
+% Vlastní balíčky
+\usepackage{gnuplottex}
+\usepackage{epstopdf}
+\usepackage{csvsimple}
+\usepackage{units}
+\usepackage{subfig}
+\usepackage{pdfpages}
+\usepackage{multirow}
+
+\usepackage{soul}
+
+\usepackage{calc}
+\newcommand*{\mask}[2]{\mathord{\makebox[\widthof{\(#1\)}]{\(#2\)}}}
+
+
+
+
+\renewcommand{\U}[1]{\ensuremath{\,\mathrm{#1}}}
+\newcommand{\°}{\degree}
+
+\newcommand{\titjmeno}{Michal Grňo}
+\newcommand{\titobor}{FOF}
+
+
+\newcommand{\titcislo}{A19}
+\newcommand{\titnazev}{Rentgenografické difrakční určení mřížového parametru známé kubické látky}
+\newcommand{\titmereni}{19. 11. 2020}
+\newcommand{\titodevzdani}{4. 12. 2020}
+
+
+\renewcommand{\t}[1]{\mathrm{#1}}
+
+
+\begin{document}
+
+\include{titulka}
+\setmainfont{Linux Libertine O}
+
+
+
+
+\section{Pracovní úkoly}
+\begin{enumerate}
+
+    \item \st{Nalezněte standardní rtg práškový difraktogram v databázi PDF-2 na CD-ROM.}
+    \item \st{Určete vhodný úhlový obor měření.}
+    \item \st{Připravte vzorek pro měření a proveďte měření na komerčním práškovém difraktometru.}
+    \item V průběhu měření zpracujte data dodaná z měření na stejném (obdobném) vzorku provedená většinou předcházející skupinou – nalezněte polohy difrakčních maxim
+    \item Z Braggovy rovnice vypočtěte mezirovinné vzdálenosti a mřížové parametry pro jednotlivé difraktující roviny.
+    \item Proveďte korekci na instrumentální efekty a určete mřížový parametr zadané kubické látky s maximální přesností.
+    \item Diskutujte odchylky mezi určeným parametrem konkrétního vzorku a tabelovaným mřížovým parametrem.
+
+\end{enumerate}
+
+\section{Teoretická část}
+
+\begin{figure}[p]
+    \centering
+    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 18cm, 8cm}]
+        plot 'zprac1/'.file.'.png_raw.dat' w l t 'jas', 'zprac2/'.file.'.png_peaks.dat' using 1:2 w p lc rgb "red" pt 7 t 'peaky', 'zprac2/'.file.'.png_peaks.dat' using 1:($2+5):(($4 == 2 ? 'x' : $4 == 3 ? 'y' : 'z').sprintf('_%1d',$3)) w labels not
+    \end{gnuplot}
+    \caption{}
+    \label{}
+\end{figure}
+
+\section{Diskuse}
+
+
+
+\section{Závěr}
+
+\section{Literatura}
+[1] Praktikum částicové a jaderné fyziky. Objevování částic v detektoru ATLAS v CERN. \\ Dostupné z: \url{https://physics.mff.cuni.cz/vyuka/zfp/_media/zadani/texty/txt_401.pdf}. 26. září 2019.
+\\\\
+{}[2] DANIŠ, Stanislav. \textit{Atomová fyzika a elektronová struktura látek.} Praha: MatfyzPress, 2019. \\ ISBN 978-80-7378-376-1. Kapitola Struktura pevných látek.
+\\\\
+{}[3] SWANSON, H.E. and E. Tatge. \textit{Standard X-ray Difraction Powder Patterns.} National Bureau of Standards. 1953.
+
+\end{document}
