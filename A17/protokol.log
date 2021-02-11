@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2020.11.8)  6 FEB 2021 01:00
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2020.11.8)  11 FEB 2021 22:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -534,9 +534,9 @@ Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
 Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(touch w18-test-20212660.tex)...disabled (restricted).
+runsystem(touch w18-test-20212111351.tex)...disabled (restricted).
 
-runsystem(rm -f w18-test-20212660.tex)...disabled (restricted).
+runsystem(rm -f w18-test-20212111351.tex)...disabled (restricted).
 
 runsystem(rm -f "protokol.gnuploterrors")...disabled (restricted).
 
@@ -985,32 +985,22 @@ Package fontspec Info: Font family 'LinuxLibertineO(0)' created for font
 (fontspec)             <->"Linux Libertine
 (fontspec)             O/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-text;"
 
-Missing character: There is no ě in font ectt1000!
-Missing character: There is no ě in font ectt1000!
-Missing character: There is no š in font ectt1000!
-Missing character: There is no š in font ectt1000!
-Missing character: There is no č in font ectt1000!
-Missing character: There is no č in font ectt1000!
-Missing character: There is no ě in font ectt1000!
-Missing character: There is no ř in font ectt1000!
-Missing character: There is no ě in font ectt1000!
-Missing character: There is no ř in font ectt1000!
-Missing character: There is no ř in font ectt1000!
-Missing character: There is no ř in font ectt1000!
-Missing character: There is no ě in font ectt1000!
-Missing character: There is no ř in font ectt1000!
-Missing character: There is no ě in font ectt1000!
-Missing character: There is no ř in font ectt1000!
+Missing character: There is no ž in font ectt1000!
 Missing character: There is no ď in font ectt1000!
 Missing character: There is no ď in font ectt1000!
+Missing character: There is no ř in font ectt1000!
+Missing character: There is no ř in font ectt1000!
+Missing character: There is no ě in font ectt1000!
+Missing character: There is no ě in font ectt1000!
+Missing character: There is no ě in font ectt1000!
+Missing character: There is no ě in font ectt1000!
+Missing character: There is no č in font ectt1000!
+Missing character: There is no č in font ectt1000!
 Missing character: There is no ě in font ectt1000!
 Missing character: There is no ř in font ectt1000!
 Missing character: There is no ě in font ectt1000!
 Missing character: There is no ř in font ectt1000!
-Missing character: There is no č in font ectt1000!
-Missing character: There is no č in font ectt1000!
-Missing character: There is no š in font ectt1000!
-Missing character: There is no š in font ectt1000!
+Missing character: There is no ě in font ectt1000!
 \openout3 = `protokol-gnuplottex-fig1.gnuplot'.
 
  Opening gnuplot stream protokol-gnuplottex-fig1.gnuplot
@@ -1018,12 +1008,12 @@ Missing character: There is no š in font ectt1000!
 Package gnuplottex Warning: Please convert protokol-gnuplottex-fig1.gnuplot manually.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--113
+Underfull \hbox (badness 10000) in paragraph at lines 105--110
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--113
+Underfull \hbox (badness 10000) in paragraph at lines 105--110
 
  []
 
@@ -1084,8 +1074,8 @@ braces):
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 114.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 111.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 111.
  (./protokol.aux (./titulka.aux)
 LaTeX Info: Redefining \rmfamily on input line 23.
 LaTeX Info: Redefining \sffamily on input line 23.
@@ -1094,20 +1084,16 @@ LaTeX Info: Redefining \rmfamily on input line 27.
 LaTeX Info: Redefining \sffamily on input line 27.
 LaTeX Info: Redefining \ttfamily on input line 27.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 114.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 114.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 111.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 111.
 Package rerunfilecheck Info: File `protokol.out' has not changed.
 (rerunfilecheck)             Checksum: DED292D54382C4E9BC5E6E471919A567;233.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 114.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 111.
  ) 
 Here is how much of TeX's memory you used:
  20283 strings out of 480996
- 377504 string characters out of 5915727
- 736736 words of memory out of 5000000
+ 377510 string characters out of 5915727
+ 735736 words of memory out of 5000000
  36962 multiletter control sequences out of 15000+600000
  539763 words of font info for 63 fonts, out of 8000000 for 9000
  428 hyphenation exceptions out of 8191
